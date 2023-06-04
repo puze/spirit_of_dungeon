@@ -51,3 +51,4 @@ app.*.map.json
 /web
 /windows
 /pubspec.lock
+/doc
