@@ -2,6 +2,7 @@ import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
 
 class PlayerData {
   late int hp;
+  Map<String, int> spiritMap = {};
   late List<SpiritData> spiritData;
 
   PlayerData() {

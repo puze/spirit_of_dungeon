@@ -29,7 +29,6 @@ class MainRoute extends Component with HasGameRef<MainGame> {
         color: const Color(0xffadde6c),
         borderColor: const Color(0xffedffab),
       ),
-      Hud(),
     ]);
   }
 

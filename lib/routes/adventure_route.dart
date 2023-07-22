@@ -1,12 +1,15 @@
 import 'package:flame/components.dart';
+import 'package:flame/palette.dart';
 import 'package:flutter/rendering.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
 import 'package:spirit_of_the_dungeon/routes/components/background.dart';
 import 'package:spirit_of_the_dungeon/routes/components/rounded_button.dart';
+import 'package:spirit_of_the_dungeon/routes/overlays/hud.dart';
 
 class AdventureRoute extends Component with HasGameRef<MainGame> {
   late final RoundedButton _button1;
   late final TextComponent _logo;
+  late final RectangleComponent test;
   @override
   Future<void> onLoad() async {
     addAll([
@@ -28,6 +31,11 @@ class AdventureRoute extends Component with HasGameRef<MainGame> {
         color: const Color(0xffadde6c),
         borderColor: const Color(0xffedffab),
       ),
+      // test = RectangleComponent(
+      //   position: Vector2.zero(),
+      //   size: (gameRef.size / 2),
+      //   paint: BasicPalette.red.paint(),
+      // )
     ]);
   }
 
