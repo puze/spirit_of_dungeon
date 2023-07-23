@@ -18,6 +18,7 @@ class Character extends SpriteAnimationComponent {
   @override
   FutureOr<void> onLoad() {
     isDie = false;
+    initData();
     return super.onLoad();
   }
 
@@ -38,7 +39,10 @@ class Character extends SpriteAnimationComponent {
     for (int i = 0; i < spirits.length; i++) {}
   }
 
+  void initData() {}
+
   void beAttacked(DamageObject damageObject) {
+    if (isDie) return;
     hp -= damageObject.ap;
     if (hp <= 0) {
       die();

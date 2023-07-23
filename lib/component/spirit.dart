@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/character.dart';
-import 'package:spirit_of_the_dungeon/component/enemy.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
 import 'package:spirit_of_the_dungeon/routes/data/damage_object.dart';
 
@@ -20,10 +19,10 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<MainGame> {
   Vector2 startPosition = Vector2.zero();
   Vector2 targetPosition = Vector2.zero();
   double time = 0;
+  double goalTime = 0;
 
   double attackMoveTime = 5;
   bool arrive = false;
-  Vector2 targetDistance = Vector2.zero();
   double tempHeight = 0;
   double slowdownFactor = 0;
   double startVelocity = 0;
@@ -52,23 +51,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<MainGame> {
   @override
   void update(double dt) {
     if (!arrive) {
-      time += dt;
-      var timeScale = time != 0 ? time + 1 / time : dt;
-
-      // x축 이동
-      final distanceX = targetPosition.x - startPosition.x;
-      position.x = startPosition.x + (targetDistance.x * time);
-
-      // y축 이동 (포물선 운동)
-      velocity.y -= 400 / pow(targetDistance.x, 2);
-      final distancY = ((4 * tempHeight)) * (pow(time, 2) - time);
-      position.y = startPosition.y + distancY;
-      // debugPrint(
-      //     'time:$time distancY:$distancY \n position.x:${position.x} position.y:${position.y}');
-
-      if (position.x >= targetPosition.x) {
-        arrive = true;
-      }
+      updateMove(dt);
     } else {
       endMoving();
     }
@@ -76,18 +59,26 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<MainGame> {
   }
 
   void startMoving() {
-    Vector2 destination =
+    targetPosition =
         enemy.position - (parent as PositionComponent).position.clone();
     startPosition = Vector2.zero();
-    // debugPrint('$startPosition, ${enemy.position}, $destination');
-    targetPosition = destination;
-    targetDistance = targetPosition - startPosition;
     tempHeight = 50;
-    velocity.y = 200 / (targetPosition.x - startPosition.x);
     slowdownFactor = 0.9;
     time = 0;
-    velocity = targetDistance.normalized() * startVelocity;
+    goalTime = 1;
     arrive = false;
+  }
+
+  void updateMove(double dt) {
+    time += dt;
+    // x축 이동
+    position.x = (targetPosition.x.abs() / goalTime) * time; // scale문제로 절대값 적용
+    // y축 이동 (포물선 운동)
+    position.y = (4 * tempHeight) / pow(goalTime, 2) * time * (time - goalTime);
+
+    if (goalTime <= time) {
+      arrive = true;
+    }
   }
 
   void endMoving() {

@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:spirit_of_the_dungeon/component/character.dart';
-import 'package:spirit_of_the_dungeon/component/enemy.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
 import 'package:flame_texturepacker/flame_texturepacker.dart';
-import 'package:spirit_of_the_dungeon/component/spirit.dart';
-import 'package:spirit_of_the_dungeon/routes/battle_route.dart';
 
 class Player extends Character with HasGameRef<MainGame> {
   @override
@@ -17,5 +14,11 @@ class Player extends Character with HasGameRef<MainGame> {
     size = size * 3;
     anchor = Anchor.center;
     return super.onLoad();
+  }
+
+  @override
+  void initData() {
+    hp = 100;
+    ap = 5;
   }
 }

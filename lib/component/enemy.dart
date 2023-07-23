@@ -17,6 +17,7 @@ class Enemy extends Character with HasGameRef<MainGame> {
     return super.onLoad();
   }
 
+  @override
   void initData() {
     hp = 100;
     ap = 5;

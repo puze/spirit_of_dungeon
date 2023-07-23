@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/rendering.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
@@ -39,7 +38,6 @@ class Hud extends PositionComponent with HasGameRef<MainGame> {
 
   @override
   void onGameResize(Vector2 size) {
-    // TODO: implement onGameResize
     super.onGameResize(size);
     _redAnchoredRectangle
       ..size = Vector2(size.x / 2, 20)

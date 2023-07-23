@@ -1,5 +1,4 @@
 import 'package:flame/components.dart';
-import 'package:flame/sprite.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/enemy.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
@@ -18,6 +17,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   late Enemy enemy;
   double attakWaitTime = 0;
   List<SpiritData> spiritDatas = [];
+  bool isBattleEnd = false;
 
   @override
   Future<void> onLoad() async {
@@ -40,7 +40,8 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
       ),
       _button1 = RoundedButton(
         text: 'Battle Start',
-        action: () => gameRef.router.pushNamed('AdventureRoute'),
+        // action: () => gameRef.router.pushNamed('AdventureRoute'),
+        action: () => endBattle(),
         color: const Color(0xffadde6c),
         borderColor: const Color(0xffedffab),
       ),
@@ -58,11 +59,12 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   void enemyInit() {
     enemy = Enemy();
     enemy.position = Vector2(gameRef.size.x * 4 / 5, gameRef.size.y * 1 / 2);
-    enemy.scale = Vector2(-1, 1);
+    // enemy.scale = Vector2(-1, 1);
+    enemy.flipHorizontally();
   }
 
   void setSpirit() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 9; i++) {
       player.setSpirit(enemy);
     }
     for (int i = 0; i < 5; i++) {
@@ -83,13 +85,13 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
 
   @override
   void update(double dt) {
-    // TODO: implement update
     super.update(dt);
     gameMain(dt);
   }
 
   void gameMain(double dt) {
     battleUpdate(dt);
+    observeEndCondition();
   }
 
   void idleUpdate(double dt) {}
@@ -114,7 +116,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   void enemyTurnStart(double dt) {
     debugPrint('enemyTurnStart');
     enemy.attackStart();
-    attakWaitTime = 1;
+    attakWaitTime = 2;
     battleUpdate = enemyTurn;
   }
 
@@ -128,9 +130,25 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
     }
   }
 
-  void endBattle() {}
+  void endBattle() {
+    removeFromParent();
+  }
 
-  void playerWin() {}
+  void playerWin() {
+    endBattle();
+  }
 
-  void enemyWin() {}
+  void enemyWin() {
+    endBattle();
+  }
+
+  void observeEndCondition() {
+    if (player.isDie) {
+      isBattleEnd = true;
+      enemyWin();
+    } else if (enemy.isDie) {
+      isBattleEnd = true;
+      playerWin();
+    }
+  }
 }
