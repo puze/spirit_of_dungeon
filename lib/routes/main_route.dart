@@ -25,10 +25,7 @@ class MainRoute extends Component with HasGameRef<MainGame> {
       ),
       _button1 = RoundedButton(
         text: 'Adventure Start',
-        // action: () => gameRef.router.pushNamed('AdventureRoute'),
-        action: () {
-          add(BattleRoute());
-        },
+        action: () => gameRef.router.pushNamed('AdventureRoute'),
         color: const Color(0xffadde6c),
         borderColor: const Color(0xffedffab),
       ),

@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/enemy.dart';
 import 'package:spirit_of_the_dungeon/main_game.dart';
@@ -10,7 +11,7 @@ import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
 typedef BattleUpdate = void Function(double dt);
 
 class BattleRoute extends Component with HasGameRef<MainGame> {
-  late final RoundedButton _button1;
+  // late final RoundedButton _button1;
   late final TextComponent _logo;
   late BattleUpdate battleUpdate;
   late Player player;
@@ -38,13 +39,13 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
         ),
         anchor: Anchor.center,
       ),
-      _button1 = RoundedButton(
-        text: 'Battle Start',
-        // action: () => gameRef.router.pushNamed('AdventureRoute'),
-        action: () => endBattle(),
-        color: const Color(0xffadde6c),
-        borderColor: const Color(0xffedffab),
-      ),
+      // _button1 = RoundedButton(
+      //   text: 'Battle Start',
+      //   // action: () => gameRef.router.pushNamed('AdventureRoute'),
+      //   action: () => endBattle(),
+      //   color: const Color(0xffadde6c),
+      //   borderColor: const Color(0xffedffab),
+      // ),
       player,
       enemy,
     ]);
@@ -80,7 +81,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
     _logo.position = Vector2(size.x / 2, size.y / 3);
-    _button1.position = Vector2(size.x / 2, _logo.y + 80);
+    // _button1.position = Vector2(size.x / 2, _logo.y + 80);
   }
 
   @override
@@ -116,7 +117,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   void enemyTurnStart(double dt) {
     debugPrint('enemyTurnStart');
     enemy.attackStart();
-    attakWaitTime = 2;
+    attakWaitTime = 1;
     battleUpdate = enemyTurn;
   }
 
@@ -131,7 +132,10 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   }
 
   void endBattle() {
-    removeFromParent();
+    // removeFromParent();
+    gameRef.adventureData.currentMapPoint?.disabled();
+    gameRef.adventureData.currentMapPoint = null;
+    gameRef.router.pop();
   }
 
   void playerWin() {
