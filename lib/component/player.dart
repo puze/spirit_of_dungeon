@@ -19,6 +19,6 @@ class Player extends Character with HasGameRef<MainGame> {
   @override
   void initData() {
     hp = 100;
-    ap = 5;
+    ap = 10;
   }
 }

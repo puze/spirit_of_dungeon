@@ -11,16 +11,18 @@ import 'package:spirit_of_the_dungeon/routes/battle_route.dart';
 import 'package:spirit_of_the_dungeon/routes/data/adventure_data.dart';
 
 class MapPoint extends SpriteComponent with TapCallbacks, HasGameRef<MainGame> {
-  late AdventureData adventureData;
+  late AdventureData _adventureData;
+  int id = 0;
   bool isActive = true;
 
-  MapPoint({required Vector2 mapPosition}) : super(position: mapPosition);
+  MapPoint({required this.id, required Vector2 mapPosition})
+      : super(position: mapPosition);
 
   @override
   FutureOr<void> onLoad() {
     sprite = Sprite(Flame.images.fromCache('maps/bone_skull.png'));
     size = Vector2(50, 50);
-    adventureData = gameRef.adventureData;
+    _adventureData = gameRef.adventureData;
 
     return super.onLoad();
   }
@@ -28,7 +30,7 @@ class MapPoint extends SpriteComponent with TapCallbacks, HasGameRef<MainGame> {
   @override
   void onTapDown(TapDownEvent event) {
     if (isActive) {
-      adventureData.currentMapPoint = this;
+      _adventureData.currentMapPoint = this;
       gameRef.router.pushRoute(Route(BattleRoute.new));
       // gameRef.router.pushNamed('BattleRoute');
       // AdventurePage route = parent?.parent as AdventurePage;

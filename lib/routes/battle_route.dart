@@ -134,7 +134,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
   void endBattle() {
     // removeFromParent();
     gameRef.adventureData.currentMapPoint?.disabled();
-    gameRef.adventureData.currentMapPoint = null;
+    gameRef.adventureData.openNextMapPoint();
     gameRef.router.pop();
   }
 

@@ -22,4 +22,13 @@ class AdventureMap extends SpriteComponent with HasGameRef<MainGame> {
 
     return super.onLoad();
   }
+
+  @override
+  void update(double dt) {
+    if (adventureData.isNeedRefreash) {
+      add(adventureData.currentMapPoint!);
+      adventureData.isNeedRefreash = false;
+    }
+    super.update(dt);
+  }
 }
