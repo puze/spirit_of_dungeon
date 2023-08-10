@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/enemy.dart';
-import 'package:spirit_of_the_dungeon/main_game.dart';
+import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/component/player.dart';
 import 'package:spirit_of_the_dungeon/routes/components/background.dart';
 import 'package:spirit_of_the_dungeon/routes/components/rounded_button.dart';
@@ -10,7 +10,7 @@ import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
 
 typedef BattleUpdate = void Function(double dt);
 
-class BattleRoute extends Component with HasGameRef<MainGame> {
+class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   // late final RoundedButton _button1;
   late final TextComponent _logo;
   late BattleUpdate battleUpdate;
@@ -112,6 +112,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
         battleUpdate = enemyTurnStart;
       }
     }
+    reflectPlayerData();
   }
 
   void enemyTurnStart(double dt) {
@@ -129,6 +130,7 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
         battleUpdate = playerTurnStart;
       }
     }
+    reflectPlayerData();
   }
 
   void endBattle() {
@@ -154,5 +156,9 @@ class BattleRoute extends Component with HasGameRef<MainGame> {
       isBattleEnd = true;
       playerWin();
     }
+  }
+
+  void reflectPlayerData() {
+    gameRef.playerData.hp = player.hp;
   }
 }

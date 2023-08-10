@@ -5,12 +5,13 @@ import 'package:flame/experimental.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:spirit_of_the_dungeon/component/adventure_map.dart';
-import 'package:spirit_of_the_dungeon/main_game.dart';
+import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/routes/adventure_page.dart';
 import 'package:spirit_of_the_dungeon/routes/battle_route.dart';
 import 'package:spirit_of_the_dungeon/routes/data/adventure_data.dart';
 
-class MapPoint extends SpriteComponent with TapCallbacks, HasGameRef<MainGame> {
+class MapPoint extends SpriteComponent
+    with TapCallbacks, HasGameRef<SpiritOfDungeon> {
   late AdventureData _adventureData;
   int id = 0;
   bool isActive = true;

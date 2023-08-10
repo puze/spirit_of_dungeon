@@ -4,10 +4,11 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/character.dart';
-import 'package:spirit_of_the_dungeon/main_game.dart';
+import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/routes/data/damage_object.dart';
+import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
 
-class Spirit extends SpriteAnimationComponent with HasGameRef<MainGame> {
+class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   static const double gravity = 200; // 중력 가속도
   static const double jumpVelocity = -400; // 점프 초기 속도
   static const double jumpHeight = 200; // 점프 높이

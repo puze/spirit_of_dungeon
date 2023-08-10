@@ -6,7 +6,7 @@ import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/routes/main_route.dart';
 import 'package:spirit_of_the_dungeon/routes/overlays/hud.dart';
 
-class MainGame extends FlameGame {
+class SpiritOfDungeon extends FlameGame {
   late final RouterComponent router;
   final Hud hud = Hud();
   PlayerData playerData = PlayerData();
