@@ -13,8 +13,11 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   static const double jumpVelocity = -400; // 점프 초기 속도
   static const double jumpHeight = 200; // 점프 높이
 
+  final spiritPath = 'spirits/';
   late Character master;
   Character enemy;
+  int spiritID;
+  late SpiritData spiritData;
 
   Vector2 velocity = Vector2.zero();
   Vector2 startPosition = Vector2.zero();
@@ -30,12 +33,12 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
 
   bool isPresent = false;
 
-  Spirit({required this.enemy});
+  Spirit({required this.spiritID, required this.enemy});
 
   @override
   FutureOr<void> onLoad() {
-    final image = game.images
-        .fromCache('Free Pixel Effects Pack/16_sunburn_spritesheet.png');
+    initSpiritData();
+    final image = game.images.fromCache('$spiritPath${spiritData.imageName}');
     animation = SpriteAnimation.fromFrameData(
         image,
         SpriteAnimationData.sequenced(
@@ -57,6 +60,15 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
       endMoving();
     }
     super.update(dt);
+  }
+
+  void initSpiritData() {
+    SpiritData? tempSpiritData = gameRef.spiritsMap[spiritID];
+    if (tempSpiritData != null) {
+      spiritData = tempSpiritData;
+    } else {
+      AssertionError('스피릿 생성 실패');
+    }
   }
 
   void startMoving() {
@@ -84,7 +96,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
 
   void endMoving() {
     DamageObject damageObject = DamageObject();
-    damageObject.ap = master.ap;
+    damageObject.ap = (master.ap * spiritData.ap!).round();
     enemy.beAttacked(damageObject);
     removeFromParent();
   }

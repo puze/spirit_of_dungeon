@@ -19,7 +19,7 @@ class Enemy extends Character with HasGameRef<SpiritOfDungeon> {
 
   @override
   void initData() {
-    hp = 100;
+    hp = 110;
     ap = 5;
   }
 

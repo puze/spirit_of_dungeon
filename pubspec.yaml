@@ -69,10 +69,11 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/Warrior-V1.3/Warrior/Individual Sprite/idle/
-    - assets/images/Free Pixel Effects Pack/
+    - assets/images/spirits/
     - assets/images/character/
     - assets/images/maps/
     - assets/animation_datas/
+    - assets/datas/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

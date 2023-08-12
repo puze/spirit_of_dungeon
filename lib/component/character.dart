@@ -61,8 +61,8 @@ class Character extends SpriteAnimationComponent {
     currentSpiritNum = 0;
   }
 
-  void setSpirit(Character enemy) {
-    Spirit spirit = Spirit(enemy: enemy);
+  void setSpirit(int spiritID, Character enemy) {
+    Spirit spirit = Spirit(spiritID: spiritID, enemy: enemy);
     spirits.add(spirit);
   }
 
