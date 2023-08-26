@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/character.dart';
+import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/routes/data/damage_object.dart';
 import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
@@ -63,12 +64,15 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   }
 
   void initSpiritData() {
-    SpiritData? tempSpiritData = gameRef.spiritsMap[spiritID];
-    if (tempSpiritData != null) {
-      spiritData = tempSpiritData;
-    } else {
-      AssertionError('스피릿 생성 실패');
-    }
+    SpiritData tempSpiritData =
+        MasterData().spirits.firstWhere((element) => element.id == spiritID);
+
+    spiritData = tempSpiritData;
+    // if (tempSpiritData != null) {
+    //   spiritData = tempSpiritData;
+    // } else {
+    //   AssertionError('스피릿 생성 실패');
+    // }
   }
 
   void startMoving() {
@@ -96,7 +100,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
 
   void endMoving() {
     DamageObject damageObject = DamageObject();
-    damageObject.ap = (master.ap * spiritData.ap!).round();
+    damageObject.ap = (master.ap * spiritData.ap).round();
     enemy.beAttacked(damageObject);
     removeFromParent();
   }

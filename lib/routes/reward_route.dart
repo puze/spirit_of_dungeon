@@ -1,11 +1,34 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
+import 'package:flame/experimental.dart';
+import 'package:flame/game.dart';
+import 'package:flame/rendering.dart';
+import 'package:spirit_of_the_dungeon/reward/reward_page.dart';
+import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
-class RewardRoute extends Component {
+class RewardRoute extends ValueRoute<bool> {
+  RewardRoute() : super(transparent: true, value: false);
+
   @override
-  FutureOr<void> onLoad() {
-    // TODO: implement onLoad
-    return super.onLoad();
+  Component build() {
+    return RewardPage();
+  }
+
+  @override
+  void onPush(Route? previousRoute) {
+    previousRoute!
+      ..stopTime()
+      ..addRenderEffect(
+        PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0),
+      );
+  }
+
+  @override
+  void onPop(Route nextRoute) {
+    nextRoute
+      ..resumeTime()
+      ..removeRenderEffect();
   }
 }

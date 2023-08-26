@@ -33,7 +33,7 @@ class AdventureData {
     }
     Random random = Random();
     newMapPointPosition.x += 70 + random.nextInt(30);
-    newMapPointPosition.y += -25 + random.nextInt(50);
+    newMapPointPosition.y += -50 + random.nextInt(100);
     // y 포지션 제한 두기
     if (newMapPointPosition.y <= 100) {
       newMapPointPosition.y = 100;

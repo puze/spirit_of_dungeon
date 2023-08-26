@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/rendering.dart';
+import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
 import 'package:spirit_of_the_dungeon/routes/overlays/hp_bar.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
@@ -29,7 +30,8 @@ class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
 
   @override
   void update(double dt) {
-    hpBar.resizeHpBar(gameRef.playerData.hp / gameRef.playerData.maxHp);
+    hpBar.resizeHpBar(
+        MasterData().playerData.hp / MasterData().playerData.maxHp);
     super.update(dt);
   }
 

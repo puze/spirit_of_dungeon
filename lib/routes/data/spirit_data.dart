@@ -1,13 +1,13 @@
 class SpiritData {
-  int? id;
-  String? name;
-  Type? type;
-  int? rank;
-  double? ap;
-  String? imageName;
+  late int id;
+  late String name;
+  late SpiritType type;
+  late int rank;
+  late double ap;
+  late int spiritRewardRatio;
+  late String imageName;
 
-  SpiritData(
-      {this.id, this.name, this.type, this.rank, this.ap, this.imageName});
+  SpiritData();
 
   SpiritData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -15,6 +15,7 @@ class SpiritData {
     type = getStatusFromJson(json['type']);
     rank = json['rank'];
     ap = (json['ap'] as int).toDouble();
+    spiritRewardRatio = json['spiritRewardRatio'];
     imageName = json['imageName'];
   }
 
@@ -25,25 +26,26 @@ class SpiritData {
     data['type'] = type;
     data['rank'] = rank;
     data['ap'] = ap;
+    data['spiritRewardRatio'] = spiritRewardRatio;
     data['imageName'] = imageName;
     return data;
   }
 
-  Type getStatusFromJson(String typeString) {
+  SpiritType getStatusFromJson(String typeString) {
     switch (typeString) {
       case 'water':
-        return Type.water;
+        return SpiritType.water;
       case 'fire':
-        return Type.fire;
+        return SpiritType.fire;
       case 'tree':
-        return Type.tree;
+        return SpiritType.tree;
       default:
         throw ArgumentError("Unknown status: $typeString");
     }
   }
 }
 
-enum Type {
+enum SpiritType {
   water,
   fire,
   tree,

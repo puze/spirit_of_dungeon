@@ -2,6 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/enemy.dart';
+import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/routes/reward_route.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/component/player.dart';
 import 'package:spirit_of_the_dungeon/routes/components/background.dart';
@@ -65,8 +67,8 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void setSpirit() {
-    for (int i = 0; i < gameRef.playerData.spirits.length; i++) {
-      player.setSpirit(gameRef.playerData.spirits[i], enemy);
+    for (int i = 0; i < MasterData().playerData.spirits.length; i++) {
+      player.setSpirit(MasterData().playerData.spirits[i], enemy);
     }
     for (int i = 0; i < 5; i++) {
       enemy.setSpirit(1, player);
@@ -91,6 +93,9 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void gameMain(double dt) {
+    if (isBattleEnd) {
+      return;
+    }
     battleUpdate(dt);
     observeEndCondition();
   }
@@ -140,7 +145,8 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
     gameRef.router.pop();
   }
 
-  void playerWin() {
+  void playerWin() async {
+    await gameRef.router.pushAndWait(RewardRoute());
     endBattle();
   }
 
@@ -159,6 +165,6 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void reflectPlayerData() {
-    gameRef.playerData.hp = player.hp;
+    MasterData().playerData.hp = player.hp;
   }
 }
