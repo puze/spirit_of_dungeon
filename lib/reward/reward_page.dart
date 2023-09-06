@@ -6,6 +6,8 @@ import 'package:flame/experimental.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
+import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/tools/tapperble_sprite.dart';
 
@@ -63,19 +65,25 @@ class RewardPage extends Component
     rewardUpgradeSprite.size = Vector2(64, 64);
 
     fireUpgradeSprite = TappableSrpite(
-        tapUpAction: () {},
+        tapUpAction: () {
+          rewardUpgradeSpirit(SpiritType.fire);
+        },
         sprite: Sprite(Flame.images.fromCache('rewards/red_book.png')));
     fireUpgradeSprite.anchor = Anchor.center;
     fireUpgradeSprite.size = Vector2(64, 64);
 
     treeUpgradeSprite = TappableSrpite(
-        tapUpAction: () {},
+        tapUpAction: () {
+          rewardUpgradeSpirit(SpiritType.tree);
+        },
         sprite: Sprite(Flame.images.fromCache('rewards/green_book.png')));
     treeUpgradeSprite.anchor = Anchor.center;
     treeUpgradeSprite.size = Vector2(64, 64);
 
     waterUpgradeSprite = TappableSrpite(
-        tapUpAction: () {},
+        tapUpAction: () {
+          rewardUpgradeSpirit(SpiritType.water);
+        },
         sprite: Sprite(Flame.images.fromCache('rewards/blue_book.png')));
     waterUpgradeSprite.anchor = Anchor.center;
     waterUpgradeSprite.size = Vector2(64, 64);
@@ -90,7 +98,7 @@ class RewardPage extends Component
     for (var spirit in spirits) {
       currentRatio += spirit.spiritRewardRatio;
       if (spiritRatio < currentRatio) {
-        MasterData().playerData.spirits.add(spirit.id);
+        PlayerData().spirits.add(spirit.id);
         debugPrint(
             '${spirit.spiritRewardRatio / sumSpiritRewardRatio * 100}%확률, ${spirit.name}');
         break;
@@ -103,6 +111,14 @@ class RewardPage extends Component
     removeAll(rewardComponents);
     addAll(upgradeComponents);
     // endRewardPage();
+  }
+
+  void rewardUpgradeSpirit(SpiritType spiritType) {
+    PlayerData().spiritUpgrades[spiritType] =
+        PlayerData().spiritUpgrades[spiritType]! + 1;
+    debugPrint(
+        'Upgrade ${spiritType.toString()}type : ${PlayerData().spiritUpgrades[spiritType]}');
+    endRewardPage();
   }
 
   void endRewardPage() {

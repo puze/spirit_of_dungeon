@@ -55,7 +55,7 @@ class AdventurePage extends Component with HasGameRef<SpiritOfDungeon> {
     // _button1.position = Vector2(size.x / 2, _logo.y + 80);
 
     adventureMap.anchor = Anchor.center;
-    adventureMap.position = size / 2;
+    adventureMap.position = Vector2(size.x / 2, size.y / 2 - 50);
     // Vector2 mapSize = adventureMap.size;
     // adventureMap.position =
     //     Vector2(size.x / 2 - mapSize.x / 2, size.y / 2 - mapSize.y / 2);

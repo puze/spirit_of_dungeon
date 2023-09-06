@@ -9,10 +9,10 @@ class MasterData {
   static final MasterData _instance = MasterData._internal();
 
   List<SpiritData> spirits = [];
-  PlayerData playerData = PlayerData();
+
+  late int sumSpiritRewardRatio;
 
   MasterData._internal();
-  late int sumSpiritRewardRatio;
   factory MasterData() {
     return _instance;
   }

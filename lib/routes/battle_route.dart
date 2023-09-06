@@ -3,6 +3,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/component/enemy.dart';
 import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/routes/reward_route.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/component/player.dart';
@@ -67,8 +68,8 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void setSpirit() {
-    for (int i = 0; i < MasterData().playerData.spirits.length; i++) {
-      player.setSpirit(MasterData().playerData.spirits[i], enemy);
+    for (int i = 0; i < PlayerData().spirits.length; i++) {
+      player.setSpirit(PlayerData().spirits[i], enemy);
     }
     for (int i = 0; i < 5; i++) {
       enemy.setSpirit(1, player);
@@ -165,6 +166,6 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void reflectPlayerData() {
-    MasterData().playerData.hp = player.hp;
+    PlayerData().hp = player.hp;
   }
 }
