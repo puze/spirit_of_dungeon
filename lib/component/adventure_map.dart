@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
-import 'package:spirit_of_the_dungeon/component/map_point.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/routes/data/adventure_data.dart';
+import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
 class AdventureMap extends SpriteComponent with HasGameRef<SpiritOfDungeon> {
   double mapScale = 0.5;

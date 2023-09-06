@@ -1,10 +1,10 @@
 import 'dart:async';
+
 import 'package:flame/components.dart';
+import 'package:flame_texturepacker/flame_texturepacker.dart';
 import 'package:spirit_of_the_dungeon/component/character.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
 import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
-import 'package:flame_texturepacker/flame_texturepacker.dart';
 
 class Player extends Character with HasGameRef<SpiritOfDungeon> {
   @override

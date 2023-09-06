@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:darq/darq.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/flame.dart';

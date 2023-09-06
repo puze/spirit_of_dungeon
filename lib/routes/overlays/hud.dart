@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
 import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/routes/overlays/bottom_status.dart';
 import 'package:spirit_of_the_dungeon/routes/overlays/hp_bar.dart';

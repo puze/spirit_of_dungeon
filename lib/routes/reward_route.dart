@@ -1,12 +1,7 @@
-import 'dart:async';
-
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/rendering.dart';
 import 'package:spirit_of_the_dungeon/reward/reward_page.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
 class RewardRoute extends ValueRoute<bool> {
   RewardRoute() : super(transparent: true, value: false);
