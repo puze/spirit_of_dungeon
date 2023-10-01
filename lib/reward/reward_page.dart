@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
@@ -97,7 +97,8 @@ class RewardPage extends Component
     for (var spirit in spirits) {
       currentRatio += spirit.spiritRewardRatio;
       if (spiritRatio < currentRatio) {
-        PlayerData().spirits.add(spirit.id);
+        // PlayerData().spirits.add(spirit.id);
+        gameRef.playerState.addSpirit(spirit.id);
         debugPrint(
             '${spirit.spiritRewardRatio / sumSpiritRewardRatio * 100}%확률, ${spirit.name}');
         break;

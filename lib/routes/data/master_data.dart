@@ -29,4 +29,8 @@ class MasterData {
     sumSpiritRewardRatio =
         MasterData().spirits.sum((spirit) => spirit.spiritRewardRatio);
   }
+
+  SpiritData getSpriritData(int spiritID) {
+    return spirits.firstWhere((element) => element.id == spiritID);
+  }
 }

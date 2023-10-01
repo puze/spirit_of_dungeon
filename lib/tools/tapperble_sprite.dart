@@ -1,5 +1,5 @@
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
+import 'package:flame/events.dart';
 
 class TappableSrpite extends SpriteComponent with TapCallbacks {
   late void Function() tapUpAction;

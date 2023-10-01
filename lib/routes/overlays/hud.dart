@@ -15,6 +15,7 @@ class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
     Vector2 screenSize = gameRef.size;
     await super.onLoad();
     hpBar.position = Vector2(screenSize.x / 4, 30);
+    bottomStatus.position = Vector2(0, screenSize.y - screenSize.y / 5);
     await addAll([hpBar, bottomStatus]);
   }
 
@@ -22,5 +23,9 @@ class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   void update(double dt) {
     hpBar.resizeHpBar(PlayerData().hp / PlayerData().maxHp);
     super.update(dt);
+  }
+
+  void refreash() {
+    bottomStatus.loadSpirits();
   }
 }

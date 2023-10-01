@@ -6,6 +6,7 @@ class SpiritData {
   late double ap;
   late int spiritRewardRatio;
   late String imageName;
+  late String uiImageName;
 
   SpiritData();
 
@@ -17,6 +18,7 @@ class SpiritData {
     ap = (json['ap'] as int).toDouble();
     spiritRewardRatio = json['spiritRewardRatio'];
     imageName = json['imageName'];
+    uiImageName = json['uiImageName'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +30,7 @@ class SpiritData {
     data['ap'] = ap;
     data['spiritRewardRatio'] = spiritRewardRatio;
     data['imageName'] = imageName;
+    data['uiImageName'] = uiImageName;
     return data;
   }
 

@@ -11,10 +11,8 @@ class HpBar extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   @override
   FutureOr<void> onLoad() {
     initComponent();
-    addAll([
-      hpBarGauge,
-      hpBarBackGround,
-    ]);
+    add(hpBarGauge);
+    add(hpBarBackGround);
     return super.onLoad();
   }
 
@@ -23,10 +21,12 @@ class HpBar extends PositionComponent with HasGameRef<SpiritOfDungeon> {
     hpBarBackGround = RectangleComponent(
       size: Vector2(screenSize.x / 2, 20),
       paint: BasicPalette.red.paint(),
+      priority: 2,
     );
     hpBarGauge = RectangleComponent(
       size: Vector2(screenSize.x / 2, 20),
       paint: BasicPalette.gray.paint(),
+      priority: 1,
     );
   }
 
