@@ -1,12 +1,12 @@
 import 'package:flame/game.dart';
-import 'package:spirit_of_the_dungeon/routes/adventure_page.dart';
-import 'package:spirit_of_the_dungeon/routes/battle_route.dart';
-import 'package:spirit_of_the_dungeon/routes/data/adventure_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/player_state.dart';
-import 'package:spirit_of_the_dungeon/routes/main_route.dart';
-import 'package:spirit_of_the_dungeon/routes/overlays/hud.dart';
-import 'package:spirit_of_the_dungeon/routes/reward_route.dart';
+import 'package:spirit_of_the_dungeon/adventure/adventure_page.dart';
+import 'package:spirit_of_the_dungeon/battle/battle_route.dart';
+import 'package:spirit_of_the_dungeon/data/adventure_data.dart';
+import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/player_state.dart';
+import 'package:spirit_of_the_dungeon/main/main_route.dart';
+import 'package:spirit_of_the_dungeon/overlays/hud.dart';
+import 'package:spirit_of_the_dungeon/reward/reward_route.dart';
 
 class SpiritOfDungeon extends FlameGame {
   late final RouterComponent router;
@@ -18,7 +18,7 @@ class SpiritOfDungeon extends FlameGame {
   void onLoad() async {
     await loadImages();
     await MasterData().init();
-    // debugMode = true;
+    debugMode = true;
     addAll([
       router = RouterComponent(initialRoute: 'MainRoute', routes: {
         'MainRoute': Route(MainRoute.new),

@@ -1,42 +1,36 @@
 import 'dart:async';
 
+import 'package:darq/darq.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
 
-class BottomStatus extends PositionComponent with HasGameRef<SpiritOfDungeon> {
-  late RectangleComponent bottomPartBackground;
+class SpiritsView extends RectangleComponent with DragCallbacks {
   List<Component> spiritsSprites = [];
+  final double firstIntervale = 20;
+  final double spritesInterval = 70;
+  final double spriteSize = 50;
+  double currentSize = 0;
 
   @override
-  FutureOr<void> onLoad() async {
+  FutureOr<void> onLoad() {
     initComponent();
-    addAll([bottomPartBackground]);
     loadSpirits();
     return super.onLoad();
   }
 
   void initComponent() {
-    Vector2 screenSize = gameRef.size;
-    Vector2 bottomPartBackgroundSize = Vector2(screenSize.x, screenSize.y / 5);
-    bottomPartBackground = RectangleComponent(
-      anchor: Anchor.topLeft,
-      size: bottomPartBackgroundSize,
-      paint: Paint()
-        ..color = const Color.fromRGBO(0, 0, 0, 0.5)
-        ..style = PaintingStyle.fill,
-    );
+    size = (parent as PositionComponent).size;
+    // paint = Paint()..color = Colors.amber;
+    paint = Paint()..color = Colors.transparent;
   }
 
   void loadSpirits() {
     removeAll(spiritsSprites);
     int index = 0;
-    double firstIntervale = 20;
-    double spritesInterval = 70;
-    double spriteSize = 50;
     for (var spiritId in PlayerData().spirits) {
       var spirit = MasterData().getSpriritData(spiritId);
       spiritsSprites.add(SpriteComponent(
@@ -60,12 +54,25 @@ class BottomStatus extends PositionComponent with HasGameRef<SpiritOfDungeon> {
       index++;
     }
     addAll(spiritsSprites);
+    calCurrentSize();
+  }
+
+  void calCurrentSize() {
+    currentSize =
+        (firstIntervale) + (PlayerData().spirits.count() * spritesInterval);
   }
 
   @override
-  void onGameResize(Vector2 size) {
-    Vector2 bottomPartBackgroundSize = Vector2(size.x, size.y / 5);
-    bottomPartBackground.size = bottomPartBackgroundSize;
-    super.onGameResize(size);
+  void onDragUpdate(DragUpdateEvent event) {
+    Vector2 targetPosition = Vector2(position.x + event.delta.x, position.y);
+    // targetPosition.x = targetPosition.x >= 0 ? targetPosition.x : 0;
+    double diffrence = currentSize - size.x;
+    if (diffrence >= 0) {
+      targetPosition.x =
+          targetPosition.x >= -diffrence ? targetPosition.x : -diffrence;
+      targetPosition.x = targetPosition.x >= 0 ? 0 : targetPosition.x;
+      position = targetPosition;
+    }
+    super.onDragUpdate(event);
   }
 }

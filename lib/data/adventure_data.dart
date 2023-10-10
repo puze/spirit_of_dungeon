@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:spirit_of_the_dungeon/component/map_point.dart';
+import 'package:spirit_of_the_dungeon/overlays/map_point.dart';
 
 class AdventureData {
   bool isNeedRefreash = false;

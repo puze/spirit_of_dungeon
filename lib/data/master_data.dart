@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:darq/darq.dart';
 import 'package:flutter/services.dart';
-import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
 
 class MasterData {
   static final MasterData _instance = MasterData._internal();

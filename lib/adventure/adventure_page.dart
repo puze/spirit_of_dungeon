@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flutter/rendering.dart';
-import 'package:spirit_of_the_dungeon/component/adventure_map.dart';
+import 'package:spirit_of_the_dungeon/adventure/adventure_map.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/routes/components/background.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
 class AdventurePage extends Component with HasGameRef<SpiritOfDungeon> {
   // late final RoundedButton _button1;

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
-import 'package:spirit_of_the_dungeon/routes/overlays/bottom_status.dart';
-import 'package:spirit_of_the_dungeon/routes/overlays/hp_bar.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/overlays/bottom_status.dart';
+import 'package:spirit_of_the_dungeon/overlays/hp_bar.dart';
 
 class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   HpBar hpBar = HpBar();
@@ -23,9 +23,5 @@ class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   void update(double dt) {
     hpBar.resizeHpBar(PlayerData().hp / PlayerData().maxHp);
     super.update(dt);
-  }
-
-  void refreash() {
-    bottomStatus.loadSpirits();
   }
 }

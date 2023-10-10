@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
-import 'package:spirit_of_the_dungeon/routes/data/adventure_data.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/data/adventure_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 
-class AdventureMap extends SpriteComponent with HasGameRef<SpiritOfDungeon> {
+class AdventureMap extends SpriteComponent
+    with HasGameRef<SpiritOfDungeon>, DragCallbacks {
   double mapScale = 0.5;
   late AdventureData adventureData;
   @override
@@ -29,5 +31,11 @@ class AdventureMap extends SpriteComponent with HasGameRef<SpiritOfDungeon> {
       adventureData.isNeedRefreash = false;
     }
     super.update(dt);
+  }
+
+  @override
+  void onDragUpdate(DragUpdateEvent event) {
+    position = Vector2(position.x + event.delta.x, position.y);
+    super.onDragUpdate(event);
   }
 }

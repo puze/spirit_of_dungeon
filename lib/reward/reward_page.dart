@@ -4,10 +4,10 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/tools/tapperble_sprite.dart';
 
 class RewardPage extends Component
@@ -46,8 +46,8 @@ class RewardPage extends Component
   @override
   bool containsLocalPoint(Vector2 point) => true;
 
-  @override
-  void onTapUp(TapUpEvent event) => gameRef.router.pop();
+  // @override
+  // void onTapUp(TapUpEvent event) => gameRef.router.pop();
 
   void initComponent() {
     rewardSpiritSprite = TappableSrpite(

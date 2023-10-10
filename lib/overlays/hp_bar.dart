@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 
 class HpBar extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   late RectangleComponent hpBarBackGround;

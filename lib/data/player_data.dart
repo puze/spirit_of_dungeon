@@ -1,11 +1,11 @@
-import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
 
 class PlayerData {
   static final PlayerData _instance = PlayerData._internal();
 
   //consturctor
   PlayerData._internal() {
-    hp = 100;
+    hp = 1000;
     for (int i = 0; i < 3; i++) {
       spirits.add(1);
     }
@@ -16,7 +16,7 @@ class PlayerData {
   }
 
   late int hp;
-  int maxHp = 100;
+  int maxHp = 1000;
   List<int> spirits = [];
   Map<SpiritType, int> spiritUpgrades = {
     SpiritType.fire: 1,

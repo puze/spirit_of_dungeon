@@ -1,12 +1,12 @@
 import 'package:flame/components.dart';
 import 'package:flutter/widgets.dart';
-import 'package:spirit_of_the_dungeon/component/enemy.dart';
-import 'package:spirit_of_the_dungeon/component/player.dart';
+import 'package:spirit_of_the_dungeon/battle/units/enemy.dart';
+import 'package:spirit_of_the_dungeon/battle/units/player.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/reward/reward_route.dart';
 import 'package:spirit_of_the_dungeon/routes/components/background.dart';
-import 'package:spirit_of_the_dungeon/routes/data/player_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
-import 'package:spirit_of_the_dungeon/routes/reward_route.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
 
 typedef BattleUpdate = void Function(double dt);
 

@@ -74,6 +74,7 @@ flutter:
     - assets/images/character/
     - assets/images/maps/
     - assets/images/rewards/
+    - assets/images/ui/
     - assets/animation_datas/
     - assets/datas/
   # An image asset can refer to one or more resolution-specific "variants", see

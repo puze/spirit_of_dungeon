@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
-import 'package:spirit_of_the_dungeon/component/spirit.dart';
-import 'package:spirit_of_the_dungeon/routes/data/damage_object.dart';
+import 'package:spirit_of_the_dungeon/battle/units/spirit.dart';
+import 'package:spirit_of_the_dungeon/data/damage_object.dart';
 
 class Character extends SpriteAnimationComponent {
   int hp = 0;

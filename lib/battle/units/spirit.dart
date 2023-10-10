@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:spirit_of_the_dungeon/component/character.dart';
-import 'package:spirit_of_the_dungeon/routes/data/damage_object.dart';
-import 'package:spirit_of_the_dungeon/routes/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/routes/data/spirit_data.dart';
-import 'package:spirit_of_the_dungeon/spirit_of_dungeon.dart';
+import 'package:spirit_of_the_dungeon/battle/units/character.dart';
+import 'package:spirit_of_the_dungeon/data/damage_object.dart';
+import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 
 class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   static const double gravity = 200; // 중력 가속도
