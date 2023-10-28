@@ -19,7 +19,7 @@ class BottomStatus extends PositionComponent with HasGameRef<SpiritOfDungeon> {
 
   void initComponent() {
     Vector2 screenSize = gameRef.size;
-    Vector2 bottomPartBackgroundSize = Vector2(screenSize.x, screenSize.y / 5);
+    Vector2 bottomPartBackgroundSize = Vector2(screenSize.x, 100);
     bottomPartBackground = RectangleComponent(
       anchor: Anchor.topLeft,
       size: bottomPartBackgroundSize,
@@ -30,19 +30,12 @@ class BottomStatus extends PositionComponent with HasGameRef<SpiritOfDungeon> {
     );
 
     clipComponent = ClipComponent.rectangle(
-        size: Vector2(screenSize.x * 4 / 5, screenSize.y * 2 / 3 / 5),
+        size: Vector2(screenSize.x * 4 / 5, 80),
         position: Vector2(screenSize.x / 2, 0),
         anchor: Anchor.topCenter,
         priority: 10);
     spiritsView = SpiritsView();
     clipComponent.add(spiritsView);
     add(clipComponent);
-  }
-
-  @override
-  void onGameResize(Vector2 size) {
-    Vector2 bottomPartBackgroundSize = Vector2(size.x, size.y / 5);
-    bottomPartBackground.size = bottomPartBackgroundSize;
-    super.onGameResize(size);
   }
 }

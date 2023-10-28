@@ -18,7 +18,7 @@ class SpiritOfDungeon extends FlameGame {
   void onLoad() async {
     await loadImages();
     await MasterData().init();
-    debugMode = true;
+    // debugMode = true;
     addAll([
       router = RouterComponent(initialRoute: 'MainRoute', routes: {
         'MainRoute': Route(MainRoute.new),
@@ -46,6 +46,7 @@ class SpiritOfDungeon extends FlameGame {
       'ui/earth.png',
       'ui/fire.png',
       'ui/ice.png',
+      'ui/Light.png',
     ]);
   }
 }

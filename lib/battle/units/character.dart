@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 import 'package:spirit_of_the_dungeon/battle/units/spirit.dart';
 import 'package:spirit_of_the_dungeon/data/damage_object.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_object.dart';
 
 class Character extends SpriteAnimationComponent {
   int hp = 0;
@@ -62,7 +63,8 @@ class Character extends SpriteAnimationComponent {
   }
 
   void setSpirit(int spiritID, Character enemy) {
-    Spirit spirit = Spirit(spiritID: spiritID, enemy: enemy);
+    Spirit spirit =
+        Spirit(spiritObject: SpiritObject(spiritId: spiritID), enemy: enemy);
     spirits.add(spirit);
   }
 

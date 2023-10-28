@@ -81,7 +81,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
     tempHeight = 50;
     slowdownFactor = 0.9;
     time = 0;
-    goalTime = 1;
+    goalTime = 0.5;
     arrive = false;
   }
 

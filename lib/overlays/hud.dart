@@ -13,10 +13,14 @@ class Hud extends PositionComponent with HasGameRef<SpiritOfDungeon> {
   @override
   FutureOr<void> onLoad() async {
     Vector2 screenSize = gameRef.size;
+    gameRef.playerState.applyCombinedBonus();
     await super.onLoad();
     hpBar.position = Vector2(screenSize.x / 4, 30);
-    bottomStatus.position = Vector2(0, screenSize.y - screenSize.y / 5);
     await addAll([hpBar, bottomStatus]);
+    bottomStatus.anchor = Anchor.bottomLeft;
+    // bottomStatus.position = Vector2(0, screenSize.y - screenSize.y / 5);
+    bottomStatus.position =
+        Vector2(0, screenSize.y - bottomStatus.bottomPartBackground.size.y);
   }
 
   @override

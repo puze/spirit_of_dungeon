@@ -66,7 +66,7 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
 
   void setSpirit() {
     for (int i = 0; i < PlayerData().spirits.length; i++) {
-      player.setSpirit(PlayerData().spirits[i], enemy);
+      player.setSpirit(PlayerData().spirits[i].spiritId, enemy);
     }
     for (int i = 0; i < 5; i++) {
       enemy.setSpirit(1, player);

@@ -31,8 +31,8 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   void loadSpirits() {
     removeAll(spiritsSprites);
     int index = 0;
-    for (var spiritId in PlayerData().spirits) {
-      var spirit = MasterData().getSpriritData(spiritId);
+    for (var spiritObject in PlayerData().spirits) {
+      var spirit = MasterData().getSpriritData(spiritObject.spiritId);
       spiritsSprites.add(SpriteComponent(
           sprite: Sprite(Flame.images.fromCache('ui/${spirit.uiImageName}')),
           position: Vector2(index * spritesInterval + firstIntervale, 20),
@@ -51,6 +51,12 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
           position: Vector2(
               index * spritesInterval + firstIntervale + spriteSize,
               firstIntervale + spriteSize)));
+      if (spiritObject.combineBouns.isNotEmpty) {
+        spiritsSprites.add(SpriteComponent(
+            sprite: Sprite(Flame.images.fromCache('ui/Light.png')),
+            position: Vector2(index * spritesInterval + firstIntervale + 20, 7),
+            size: Vector2(10, 10)));
+      }
       index++;
     }
     addAll(spiritsSprites);
