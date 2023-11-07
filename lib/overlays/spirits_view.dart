@@ -13,6 +13,7 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   final double firstIntervale = 20;
   final double spritesInterval = 70;
   final double spriteSize = 50;
+  late double parentWidth;
   double currentSize = 0;
 
   @override
@@ -23,9 +24,10 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   }
 
   void initComponent() {
-    size = (parent as PositionComponent).size;
-    // paint = Paint()..color = Colors.amber;
-    paint = Paint()..color = Colors.transparent;
+    parentWidth = (parent as PositionComponent).size.x;
+    size.y = (parent as PositionComponent).size.y;
+    paint = Paint()..color = const Color.fromARGB(59, 255, 191, 0);
+    // paint = Paint()..color = Colors.transparent;
   }
 
   void loadSpirits() {
@@ -51,7 +53,7 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
           position: Vector2(
               index * spritesInterval + firstIntervale + spriteSize,
               firstIntervale + spriteSize)));
-      if (spiritObject.combineBouns.isNotEmpty) {
+      if (spiritObject.combineBounsList.isNotEmpty) {
         spiritsSprites.add(SpriteComponent(
             sprite: Sprite(Flame.images.fromCache('ui/Light.png')),
             position: Vector2(index * spritesInterval + firstIntervale + 20, 7),
@@ -66,13 +68,14 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   void calCurrentSize() {
     currentSize =
         (firstIntervale) + (PlayerData().spirits.count() * spritesInterval);
+    size.x = currentSize;
   }
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
     Vector2 targetPosition = Vector2(position.x + event.delta.x, position.y);
     // targetPosition.x = targetPosition.x >= 0 ? targetPosition.x : 0;
-    double diffrence = currentSize - size.x;
+    double diffrence = currentSize - parentWidth;
     if (diffrence >= 0) {
       targetPosition.x =
           targetPosition.x >= -diffrence ? targetPosition.x : -diffrence;

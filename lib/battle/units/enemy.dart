@@ -19,13 +19,8 @@ class Enemy extends Character with HasGameRef<SpiritOfDungeon> {
 
   @override
   void initData() {
-    hp = 1100;
-    ap = 5;
-  }
-
-  @override
-  void update(double dt) {
-    // TODO: implement update
-    super.update(dt);
+    //TODO:데이터화
+    hp = 100;
+    ap = 10;
   }
 }

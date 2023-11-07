@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:spirit_of_the_dungeon/adventure/adventure_page.dart';
 import 'package:spirit_of_the_dungeon/battle/battle_route.dart';
+import 'package:spirit_of_the_dungeon/battle/gameover_page.dart';
 import 'package:spirit_of_the_dungeon/data/adventure_data.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
 import 'package:spirit_of_the_dungeon/data/player_state.dart';
@@ -24,7 +25,8 @@ class SpiritOfDungeon extends FlameGame {
         'MainRoute': Route(MainRoute.new),
         'AdventureRoute': Route(AdventurePage.new),
         'BattleRoute': Route(BattleRoute.new),
-        'RewardRoute': RewardRoute()
+        'RewardRoute': RewardRoute(),
+        'GameoverRoute': Route(GameoverPage.new),
       }),
       hud,
       playerState,

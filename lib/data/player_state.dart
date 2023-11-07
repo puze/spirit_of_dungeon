@@ -25,7 +25,7 @@ class PlayerState extends Component with HasGameRef<SpiritOfDungeon> {
 
     // 보너스 클리어후 재작성
     for (SpiritObject spiritElement in spirits) {
-      spiritElement.combineBouns.clear();
+      spiritElement.combineBounsList.clear();
     }
 
     //tripleFlush, straightFlush, triple, straight, flush
@@ -40,7 +40,7 @@ class PlayerState extends Component with HasGameRef<SpiritOfDungeon> {
           tempSpirits[0].type == tempSpirits[1].type &&
           tempSpirits[1].type == tempSpirits[2].type) {
         for (int k = 0; k < 3; k++) {
-          spirits[i - k].combineBouns.add(CombineBonusType.tripleFlush);
+          spirits[i - k].combineBounsList.add(CombineBonusType.tripleFlush);
         }
       }
       // straightFlush
@@ -49,28 +49,28 @@ class PlayerState extends Component with HasGameRef<SpiritOfDungeon> {
           tempSpirits[0].type == tempSpirits[1].type &&
           tempSpirits[1].type == tempSpirits[2].type) {
         for (int k = 0; k < 3; k++) {
-          spirits[i - k].combineBouns.add(CombineBonusType.straightFlush);
+          spirits[i - k].combineBounsList.add(CombineBonusType.straightFlush);
         }
       }
       // triple
       else if (tempSpirits[0].rank == tempSpirits[1].rank &&
           tempSpirits[1].rank == tempSpirits[2].rank) {
         for (int k = 0; k < 3; k++) {
-          spirits[i - k].combineBouns.add(CombineBonusType.triple);
+          spirits[i - k].combineBounsList.add(CombineBonusType.triple);
         }
       }
       // straight
       else if (tempSpirits[0].rank + 2 == tempSpirits[1].rank + 1 &&
           tempSpirits[1].rank + 1 == tempSpirits[2].rank) {
         for (int k = 0; k < 3; k++) {
-          spirits[i - k].combineBouns.add(CombineBonusType.straight);
+          spirits[i - k].combineBounsList.add(CombineBonusType.straight);
         }
       }
       // straight
       else if (tempSpirits[0].type == tempSpirits[1].type &&
           tempSpirits[1].type == tempSpirits[2].type) {
         for (int k = 0; k < 3; k++) {
-          spirits[i - k].combineBouns.add(CombineBonusType.flush);
+          spirits[i - k].combineBounsList.add(CombineBonusType.flush);
         }
       }
     }

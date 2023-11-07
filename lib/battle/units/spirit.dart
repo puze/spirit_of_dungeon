@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:spirit_of_the_dungeon/battle/units/character.dart';
 import 'package:spirit_of_the_dungeon/data/damage_object.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
+import 'package:spirit_of_the_dungeon/data/spirit_object.dart';
 import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 
 class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
@@ -16,7 +19,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   final spiritPath = 'spirits/';
   late Character master;
   Character enemy;
-  int spiritID;
+  SpiritObject spiritObject;
   late SpiritData spiritData;
 
   Vector2 velocity = Vector2.zero();
@@ -33,7 +36,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
 
   bool isPresent = false;
 
-  Spirit({required this.spiritID, required this.enemy});
+  Spirit({required this.spiritObject, required this.enemy});
 
   @override
   FutureOr<void> onLoad() {
@@ -63,8 +66,9 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
   }
 
   void initSpiritData() {
-    SpiritData tempSpiritData =
-        MasterData().spirits.firstWhere((element) => element.id == spiritID);
+    SpiritData tempSpiritData = MasterData()
+        .spirits
+        .firstWhere((element) => element.id == spiritObject.spiritId);
 
     spiritData = tempSpiritData;
     // if (tempSpiritData != null) {
@@ -99,7 +103,35 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
 
   void endMoving() {
     DamageObject damageObject = DamageObject();
-    damageObject.ap = (master.ap * spiritData.ap).round();
+
+    // Combo bonus
+    int comboBonus = 0;
+    for (CombineBonusType comboBonusElement in spiritObject.combineBounsList) {
+      switch (comboBonusElement) {
+        case CombineBonusType.tripleFlush:
+          comboBonus += 10;
+          break;
+        case CombineBonusType.straightFlush:
+          comboBonus += 8;
+          break;
+        case CombineBonusType.triple:
+          comboBonus += 6;
+          break;
+        case CombineBonusType.straight:
+          comboBonus += 4;
+          break;
+        case CombineBonusType.flush:
+          comboBonus += 1;
+          break;
+      }
+    }
+
+    // Upgrade bonus
+    int upgradeFactor = PlayerData().spiritUpgrades[spiritData.type]!;
+
+    damageObject.ap =
+        (master.ap * spiritData.ap + comboBonus + upgradeFactor).round();
+    debugPrint('${damageObject.ap}');
     enemy.beAttacked(damageObject);
     removeFromParent();
   }

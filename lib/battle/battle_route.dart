@@ -149,7 +149,7 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void enemyWin() {
-    endBattle();
+    gameOver();
   }
 
   void observeEndCondition() {
@@ -164,5 +164,10 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
 
   void reflectPlayerData() {
     PlayerData().hp = player.hp;
+  }
+
+  void gameOver() {
+    gameRef.router.pop();
+    gameRef.router.pop();
   }
 }
