@@ -1,16 +1,50 @@
-# spirit_of_the_dungeon
+## Spirits of dungeon
+# 개요
+속성을 가진 정령들을 이용해 던전을 돌파하는 모바일 게임
 
-A new Flutter project.
+# 진행 방식
+1. 게임 입장
+2. 던전 입장
+3. 몬스터와 전투
+ - 승리 -> '보상'으로
+ - 패배 -> '게임 입장'으로 
+4. 보상
+ - 정령 보상 : 새로운 정령을 받음
+ - 강화 보상 : 특정 속성의 정령을 강화
+5. 일정 수의 몬스터와의 전투 후 보스 몬스터와 전투, 승리시 더 좋은 보상 획득 후 해당 던전 클리어*
+ - 우수한 정령 보상 : 정령 3개를 받음
+ - 우수한 강화 보상 : 3만큼의 속성 강화
+ - 체력 회복
+ - 정령 삭제
+6. 새로운 던전에서 3부터 루틴 반복*
+7. 일정 수의 던전을 돌파 후 엔딩*
 
-## Getting Started
+# 전투
+1. 주어진 조건에 따라 자동으로 전투가 진행되며 플레이어의 체력이 0이 될 시 게임 종료
+2. 전투는 턴제로 플레이어 부터 공격을 시작
 
-This project is a starting point for a Flutter application.
+# 강화
+1. 플레이어는 가지고 있는 정령의 조합으로 더 강해질 수 있음
+2. 몬스터 속성에 따라 보너스를 받는 정령 존재*
+3. 속성을 강화하면 해당 속성을 가진 정령이 강화
 
-A few resources to get you started if this is your first Flutter project:
+# 정령
+1. 정령은 속성과 랭크를 가짐
+2. 속성은 적의 속성에 따라 보너스를 가질 수 있음
+3. 랭크는 높은 숫자의 랭크일수록 기본 데미지가 강해짐
+4. 정령의 순서로 조합 보너스를 가질 수 있음
+5. 속성은 불, 얼음, 나무로 3개의 속성이 존재 (얼음 > 불 > 나무 > 얼음)
+6. 랭크는 1부터 5까지의 정수로 존재
+7. 정령의 조합은 각 정령의 입장에서 중복으로 보너스 보유가능
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# 정령의 조합
+1. 트리플 플러쉬 : 연속된 3개의 정령이 같은 랭크와 같은 속성일 때 발동 (예: 3불, 3불, 3불)
+2. 스트레이트 플러쉬 : 연속된 3개의 정령이 1씩 증가하는 랭크와 같은 속성일 때 발동 (예: 2얼음, 3얼음, 4얼음)
+3. 트리플 : 연속된 3개의 정령이 같은 랭크일때 발동 (예: 2얼음, 2불, 2나무)
+4. 스트레이트 : 연속된 3개의 정령이 1씩 증가하는 랭크일 때 발동 (예: 1나무, 2불, 3얼음)
+5. 플러쉬 : 연속된 3개의 정령이 같은 속성일때 발동 (예: 1나무, 4나무, 5나무)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# UI
+![alt text](https://drive.google.com/uc?export=view&id=11Y1r5Q3cct3okkRdDYEUPA8AWaJXHFbH)
+
+
