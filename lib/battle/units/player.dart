@@ -20,7 +20,7 @@ class Player extends Character with HasGameRef<SpiritOfDungeon> {
 
   @override
   void initData() {
-    hp = PlayerData().hp;
+    hp = gameRef.playerData.hp;
     ap = 10;
   }
 }

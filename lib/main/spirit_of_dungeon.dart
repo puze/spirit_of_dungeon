@@ -1,9 +1,10 @@
 import 'package:flame/game.dart';
 import 'package:spirit_of_the_dungeon/adventure/adventure_page.dart';
 import 'package:spirit_of_the_dungeon/battle/battle_route.dart';
-import 'package:spirit_of_the_dungeon/battle/gameover_page.dart';
+import 'package:spirit_of_the_dungeon/battle/gameover_route.dart';
 import 'package:spirit_of_the_dungeon/data/adventure_data.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
+import 'package:spirit_of_the_dungeon/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/data/player_state.dart';
 import 'package:spirit_of_the_dungeon/main/main_route.dart';
 import 'package:spirit_of_the_dungeon/overlays/hud.dart';
@@ -13,23 +14,24 @@ class SpiritOfDungeon extends FlameGame {
   late final RouterComponent router;
   final Hud hud = Hud();
   AdventureData adventureData = AdventureData();
+  PlayerData playerData = PlayerData();
   PlayerState playerState = PlayerState();
 
   @override
   void onLoad() async {
     await loadImages();
     await MasterData().init();
-    // debugMode = true;
+    debugMode = true;
     addAll([
       router = RouterComponent(initialRoute: 'MainRoute', routes: {
         'MainRoute': Route(MainRoute.new),
         'AdventureRoute': Route(AdventurePage.new),
         'BattleRoute': Route(BattleRoute.new),
         'RewardRoute': RewardRoute(),
-        'GameoverRoute': Route(GameoverPage.new),
+        'Pause': GameoverRoute(),
       }),
-      hud,
       playerState,
+      hud,
     ]);
   }
 
@@ -50,5 +52,10 @@ class SpiritOfDungeon extends FlameGame {
       'ui/ice.png',
       'ui/Light.png',
     ]);
+  }
+
+  void resetGameData() {
+    adventureData = AdventureData();
+    playerData = PlayerData();
   }
 }

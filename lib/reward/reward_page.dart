@@ -5,7 +5,6 @@ import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
 import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 import 'package:spirit_of_the_dungeon/tools/tapperble_sprite.dart';
@@ -97,7 +96,7 @@ class RewardPage extends Component
     for (var spirit in spirits) {
       currentRatio += spirit.spiritRewardRatio;
       if (spiritRatio < currentRatio) {
-        // PlayerData().spirits.add(spirit.id);
+        // gameRef.playerData.spirits.add(spirit.id);
         gameRef.playerState.addSpirit(spirit.id);
         debugPrint(
             '${spirit.spiritRewardRatio / sumSpiritRewardRatio * 100}%확률, ${spirit.name}');
@@ -114,10 +113,10 @@ class RewardPage extends Component
   }
 
   void rewardUpgradeSpirit(SpiritType spiritType) {
-    PlayerData().spiritUpgrades[spiritType] =
-        PlayerData().spiritUpgrades[spiritType]! + 1;
+    gameRef.playerData.spiritUpgrades[spiritType] =
+        gameRef.playerData.spiritUpgrades[spiritType]! + 1;
     debugPrint(
-        'Upgrade ${spiritType.toString()}type : ${PlayerData().spiritUpgrades[spiritType]}');
+        'Upgrade ${spiritType.toString()}type : ${gameRef.playerData.spiritUpgrades[spiritType]}');
     endRewardPage();
   }
 

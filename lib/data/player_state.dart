@@ -1,6 +1,5 @@
 import 'package:flame/components.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_object.dart';
 import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
@@ -12,13 +11,13 @@ class PlayerState extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void addSpirit(int spiritId) {
-    PlayerData().spirits.add(SpiritObject(spiritId: spiritId));
+    gameRef.playerData.spirits.add(SpiritObject(spiritId: spiritId));
     applyCombinedBonus();
     gameRef.hud.bottomStatus.spiritsView.loadSpirits();
   }
 
   void applyCombinedBonus() {
-    List<SpiritObject> spirits = PlayerData().spirits;
+    List<SpiritObject> spirits = gameRef.playerData.spirits;
     if (spirits.length < 3) {
       return;
     }

@@ -6,9 +6,10 @@ import 'package:flame/events.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/data/player_data.dart';
+import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
 
-class SpiritsView extends RectangleComponent with DragCallbacks {
+class SpiritsView extends RectangleComponent
+    with DragCallbacks, HasGameRef<SpiritOfDungeon> {
   List<Component> spiritsSprites = [];
   final double firstIntervale = 20;
   final double spritesInterval = 70;
@@ -33,7 +34,7 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   void loadSpirits() {
     removeAll(spiritsSprites);
     int index = 0;
-    for (var spiritObject in PlayerData().spirits) {
+    for (var spiritObject in gameRef.playerData.spirits) {
       var spirit = MasterData().getSpriritData(spiritObject.spiritId);
       spiritsSprites.add(SpriteComponent(
           sprite: Sprite(Flame.images.fromCache('ui/${spirit.uiImageName}')),
@@ -66,8 +67,8 @@ class SpiritsView extends RectangleComponent with DragCallbacks {
   }
 
   void calCurrentSize() {
-    currentSize =
-        (firstIntervale) + (PlayerData().spirits.count() * spritesInterval);
+    currentSize = (firstIntervale) +
+        (gameRef.playerData.spirits.count() * spritesInterval);
     size.x = currentSize;
   }
 

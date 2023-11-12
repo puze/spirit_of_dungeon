@@ -21,6 +21,6 @@ class Enemy extends Character with HasGameRef<SpiritOfDungeon> {
   void initData() {
     //TODO:데이터화
     hp = 100;
-    ap = 10;
+    ap = 1000;
   }
 }

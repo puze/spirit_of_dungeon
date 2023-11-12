@@ -65,8 +65,8 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void setSpirit() {
-    for (int i = 0; i < PlayerData().spirits.length; i++) {
-      player.setSpirit(PlayerData().spirits[i].spiritId, enemy);
+    for (int i = 0; i < gameRef.playerData.spirits.length; i++) {
+      player.setSpirit(gameRef.playerData.spirits[i].spiritId, enemy);
     }
     for (int i = 0; i < 5; i++) {
       enemy.setSpirit(1, player);
@@ -163,11 +163,10 @@ class BattleRoute extends Component with HasGameRef<SpiritOfDungeon> {
   }
 
   void reflectPlayerData() {
-    PlayerData().hp = player.hp;
+    gameRef.playerData.hp = player.hp;
   }
 
   void gameOver() {
-    gameRef.router.pop();
-    gameRef.router.pop();
+    game.router.pushNamed('Pause');
   }
 }

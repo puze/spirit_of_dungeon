@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:spirit_of_the_dungeon/battle/units/character.dart';
 import 'package:spirit_of_the_dungeon/data/damage_object.dart';
 import 'package:spirit_of_the_dungeon/data/master_data.dart';
-import 'package:spirit_of_the_dungeon/data/player_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_data.dart';
 import 'package:spirit_of_the_dungeon/data/spirit_object.dart';
 import 'package:spirit_of_the_dungeon/main/spirit_of_dungeon.dart';
@@ -127,7 +126,7 @@ class Spirit extends SpriteAnimationComponent with HasGameRef<SpiritOfDungeon> {
     }
 
     // Upgrade bonus
-    int upgradeFactor = PlayerData().spiritUpgrades[spiritData.type]!;
+    int upgradeFactor = gameRef.playerData.spiritUpgrades[spiritData.type]!;
 
     damageObject.ap =
         (master.ap * spiritData.ap + comboBonus + upgradeFactor).round();
